@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DYD 64 Batch 6 - Mentoring Class Schedule</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', 'Hind Siliguri', sans-serif;
+            background-color: #f4f7f6;
+        }
+        @keyframes slideInUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .toast-popup {
+            animation: slideInUp 0.5s ease-out forwards;
+        }
+        /* Custom Scrollbar for the table */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
+</head>
+<body class="text-gray-800 p-4 md:p-8 relative min-h-screen">
+
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-10 flex flex-col items-center">
+            <img src="jubo-64-banner.jpeg" alt="যুব উন্নয়ন অধিদপ্তর প্রজেক্ট ব্যানার" class="w-full max-w-5xl mx-auto rounded-2xl shadow-lg mb-6 border border-gray-200 object-cover">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-green-700 mb-2 tracking-tight">DYD-64 District 6th Batch Mentoring Class</h1>
+            <p class="text-lg text-gray-600 font-medium">মেন্টরিং ক্লাস শিডিউল ও লাইভ জুম লিংক</p>
+        </header>
+
+        <div id="todays-classes-container" class="max-w-5xl mx-auto mb-12">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-3 mb-6">
+                <span class="text-3xl">📅</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 text-center">
+                    আজকের ক্লাস টপিক 
+                    <span id="today-date-display" class="text-blue-600 bg-blue-50 px-3 py-1 rounded-lg text-xl md:ml-2 border border-blue-100 inline-block mt-2 md:mt-0"></span>
+                </h2>
+            </div>
+            
+            <div id="todays-classes-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                </div>
+        </div>
+
+        <div class="text-center mb-12">
+            <button id="toggle-schedule-btn" class="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                সম্পূর্ণ ক্লাস শিডিউল দেখুন
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 hidden opacity-0 transition-opacity duration-500" id="schedule-container">
+            </div>
+    </div>
+
+    <div id="live-toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
+        </div>
+
+    <script>
+        // Set target date to today (13-Jul-26)
+        const todayDateStr = "13-Jul-26"; 
+        document.getElementById('today-date-display').innerText = todayDateStr;
+
+        // Full Data for all 4 batches
+        const schedules = [
+            {
+                title: "Digital Marketing (Day Shift)",
+                teachers: "Anoy Chandra Pal & Md. Likhon",
+                time: "9:30 AM - 12 PM",
+                meetingId: "833 6654 6600",
+                passcode: "202602",
+                colorTheme: "blue",
+                data: [
+                    "1|1-Jul-26|Introduction to Digital Marketing",
+                    "2|2-Jul-26|Domain Research For Create Website",
+                    "3|4-Jul-26|Wordpress Install With Overview",
+                    "4|5-Jul-26|Blog Website Creation",
+                    "5|6-Jul-26|Ecommerce Website Creation With Woocommerce",
+                    "6|7-Jul-26|Facebook Marketing(Free Marketing)",
+                    "7|8-Jul-26|Facebook Marketing(Paid Marketing-Basic ads)",
+                    "8|9-Jul-26|Facebook Business manager Creation With Pixel setup",
+                    "9|11-Jul-26|Facebook Ads By ads Manager",
+                    "10|12-Jul-26|Facebook Advance ads With Research",
+                    "11|13-Jul-26|Instagram Marketing",
+                    "12|14-Jul-26|Instagram Influncer Research",
+                    "13|15-Jul-26|Twitter Marketing",
+                    "14|16-Jul-26|Pinterest Marketing",
+                    "15|18-Jul-26|Linkedin Marketing",
+                    "16|19-Jul-26|Lead Generation(B2C)",
+                    "17|20-Jul-26|Lead Generation(B2B)",
+                    "18|21-Jul-26|Mailchimp Marketing",
+                    "19|22-Jul-26|SEO Fundamentals & Advanced SEO Strategies",
+                    "20|23-Jul-26|Keyword Research & Tools",
+                    "21|25-Jul-26|Blogging & SEO Content Writing With AI",
+                    "22|26-Jul-26|On-Page SEO Techniques",
+                    "23|27-Jul-26|Off-Page SEO & Link Building",
+                    "24|28-Jul-26|Comment Backlinks",
+                    "25|29-Jul-26|Social Bookmarkeing and Wiki Backlinks",
+                    "26|30-Jul-26|Forum Backlinks",
+                    "27|1-Aug-26|Local SEO & Google Business Profile",
+                    "28|2-Aug-26|Map Citattion",
+                    "29|3-Aug-26|Practical SEO Audit",
+                    "30|4-Aug-26|Google Search Console",
+                    "31|6-Aug-26|Google Analytics Basics",
+                    "32|8-Aug-26|YouTube Marketing & Optimization",
+                    "33|9-Aug-26|Expired Domain Research",
+                    "34|10-Aug-26|Cpa Marketing Basic",
+                    "35|11-Aug-26|Cpa Account Creation With Offer selection",
+                    "36|12-Aug-26|Landing Page Creation",
+                    "37|13-Aug-26|Google adwords Creation",
+                    "38|15-Aug-26|Google Search ads",
+                    "39|16-Aug-26|Google Display/Banner ads",
+                    "40|17-Aug-26|Google Video ads",
+                    "41|18-Aug-26|Google carousel ads",
+                    "42|19-Aug-26|Digital Marketing Freelancing Platforms",
+                    "43|20-Aug-26|Digital Marketing Freelancing Platforms",
+                    "44|22-Aug-26|Digital Marketing Freelancing Platforms",
+                    "45|23-Aug-26|Digital Marketing Freelancing Platforms",
+                    "46|24-Aug-26|Personal Branding & Portfolio Building",
+                    "47|25-Aug-26|Out Of marketplce Tips",
+                    "48|27-Aug-26|Project Work: Campaign Planning",
+                    "49|29-Aug-26|Out Of marketplce Tips",
+                    "50|30-Aug-26|Out Of marketplce Tips",
+                    "51|31-Aug-26|Out Of marketplce Tips",
+                    "52|1-Sep-26|Out Of marketplce Tips",
+                    "53|2-Sep-26|Basic AI",
+                    "54|3-Sep-26|Image Creation With AI",
+                    "55|5-Sep-26|Video Creation With AI",
+                    "56|6-Sep-26|Solve class",
+                    "57|7-Sep-26|Solve class",
+                    "58|8-Sep-26|Solve class",
+                    "59|9-Sep-26|Solve class",
+                    "60|10-Sep-26|End Class-Overall Motivation",
+                    "61|12-Sep-26|Introduction to After Effects",
+                    "62|13-Sep-26|Fast Animation – Car Animation Project",
+                    "63|14-Sep-26|Illustrator Scene Creation + AE Preparation",
+                    "64|15-Sep-26|Photoshop to AE Workflow",
+                    "65|16-Sep-26|Animation Composer Plugin",
+                    "66|17-Sep-26|Logo Animation (Professional)",
+                    "67|19-Sep-26|Motion Ad Project 1",
+                    "68|20-Sep-26|Motion AD – Intermediate",
+                    "69|21-Sep-26|Motion AD – Advanced",
+                    "70|22-Sep-26|Motion AD – Pro Level",
+                    "71|23-Sep-26|Premiere Pro",
+                    "72|24-Sep-26|Color Correction & Color Grading",
+                    "73|26-Sep-26|Advertisement Editing",
+                    "74|27-Sep-26|Marketing Your Service",
+                    "75|28-Sep-26|Start Your Creative Agency"
+                ]
+            },
+            {
+                title: "Digital Marketing (Night Shift)",
+                teachers: "Md Labib Islam & Md. Likhon",
+                time: "8 PM - 11 PM",
+                meetingId: "812 6478 6860",
+                passcode: "202601",
+                colorTheme: "indigo",
+                data: [
+                    "1|1-Jul-26|Introduction to Digital Marketing",
+                    "2|2-Jul-26|Ethical Standards in It Place",
+                    "3|4-Jul-26|Practice Negotiations Skills",
+                    "4|5-Jul-26|Digital Marketing Channels Overview",
+                    "5|6-Jul-26|Website & Landing Page Creation",
+                    "6|7-Jul-26|Website & Landing Page Customization",
+                    "7|8-Jul-26|SEO Fundamentals & Advanced SEO Strategies",
+                    "8|9-Jul-26|Keyword Research & Tools",
+                    "9|11-Jul-26|Keyword Research",
+                    "10|12-Jul-26|Blogging & SEO Content Writing With AI",
+                    "11|13-Jul-26|Affiliate Marketing",
+                    "12|14-Jul-26|On-Page SEO Techniques",
+                    "13|15-Jul-26|On-Page SEO Practice",
+                    "14|16-Jul-26|Off-Page SEO",
+                    "15|18-Jul-26|Off-Page SEO Techniques",
+                    "16|19-Jul-26|Technical SEO overview",
+                    "17|20-Jul-26|Technical SEO (Schema, Robots, Sitemap)",
+                    "18|21-Jul-26|Local SEO",
+                    "19|22-Jul-26|Google Business Profile",
+                    "20|23-Jul-26|Map Citattion",
+                    "21|25-Jul-26|Practical SEO Audit",
+                    "22|26-Jul-26|Google Search Console",
+                    "23|27-Jul-26|Google Analytics Basics",
+                    "24|28-Jul-26|Digital Marketing Freelancing Platforms",
+                    "25|29-Jul-26|Digital Marketing Freelancing Platforms",
+                    "26|30-Jul-26|Digital Marketing Freelancing Platforms",
+                    "27|1-Aug-26|Social Media Marketing Overview",
+                    "28|2-Aug-26|Social Media Content Creation",
+                    "29|3-Aug-26|Neuromarketing & Consumer Psychology",
+                    "30|4-Aug-26|Facebook Marketing Basics",
+                    "31|6-Aug-26|Organic Facebook Marketing",
+                    "32|8-Aug-26|Paid Ads: Facebook",
+                    "33|9-Aug-26|Facebook Advanced Ads",
+                    "34|10-Aug-26|Instagram Marketing Basics",
+                    "35|11-Aug-26|Instagram Growth & Influencer Marketing",
+                    "36|12-Aug-26|LinkedIn Marketing",
+                    "37|13-Aug-26|LinkedIn Lead Generation",
+                    "38|15-Aug-26|Twitter (X)",
+                    "39|16-Aug-26|Pinterest Marketing",
+                    "40|17-Aug-26|Quora & Reddit Marketing",
+                    "41|18-Aug-26|YouTube Marketing & Optimization",
+                    "42|19-Aug-26|Video Marketing Basics",
+                    "43|20-Aug-26|Data Entry",
+                    "44|22-Aug-26|Lead Generation",
+                    "45|23-Aug-26|Lead Generation",
+                    "46|24-Aug-26|Email Marketing, Template Design",
+                    "47|25-Aug-26|Email Campaign Tools & Automation",
+                    "48|27-Aug-26|Digital Marketing Analytics & Reporting",
+                    "49|29-Aug-26|Project Work: Campaign Planning",
+                    "50|30-Aug-26|Search Engine Marketing SEM",
+                    "51|31-Aug-26|Google ads",
+                    "52|1-Sep-26|Google ads",
+                    "53|2-Sep-26|Google ads",
+                    "54|3-Sep-26|Digital Marketing Freelancing Platforms",
+                    "55|5-Sep-26|Digital Marketing Freelancing Platforms",
+                    "56|6-Sep-26|Digital Marketing Freelancing Platforms",
+                    "57|7-Sep-26|Digital Marketing Freelancing Platforms",
+                    "58|8-Sep-26|Client Communication & Proposal Writing",
+                    "59|9-Sep-26|Personal Branding & Portfolio Building",
+                    "60|10-Sep-26|Final Project Submission & Feedback",
+                    "61|12-Sep-26|Introduction to After Effects",
+                    "62|13-Sep-26|Fast Animation",
+                    "63|14-Sep-26|Illustrator Scene Creation",
+                    "64|15-Sep-26|Photoshop to AE Workflow",
+                    "65|16-Sep-26|Animation Composer Plugin",
+                    "66|17-Sep-26|Logo Animation (Professional)",
+                    "67|19-Sep-26|Motion Ad Project 1",
+                    "68|20-Sep-26|Motion AD - Intermediate",
+                    "69|21-Sep-26|Motion AD - Advanced",
+                    "70|22-Sep-26|Motion AD - Pro Level",
+                    "71|23-Sep-26|Premiere Pro",
+                    "72|24-Sep-26|Color Correction & Color Grading",
+                    "73|26-Sep-26|Advertisement Editing",
+                    "74|27-Sep-26|Marketing Your Service",
+                    "75|28-Sep-26|Start Your Creative Agency"
+                ]
+            },
+            {
+                title: "Graphics Design (Day Shift)",
+                teachers: "Nishith Kumar Roy & Md. Likhon",
+                time: "9:30 AM - 12 PM",
+                meetingId: "875 2888 1307",
+                passcode: "203002",
+                colorTheme: "teal",
+                data: [
+                    "1|1-Jul-26|Introduction & getting start with adobe illustrator cc",
+                    "2|2-Jul-26|Working with artboard, basic shape tools",
+                    "3|4-Jul-26|Working with pen tool, curvature tool",
+                    "4|5-Jul-26|Working with type tool & typography",
+                    "5|6-Jul-26|Working with type tool & typography",
+                    "6|7-Jul-26|Working with Chart & Design",
+                    "7|8-Jul-26|Rotate and reflect",
+                    "8|9-Jul-26|Working with blending mode & gradients",
+                    "9|11-Jul-26|Colour theory",
+                    "10|12-Jul-26|Working with pathfinder, align",
+                    "11|13-Jul-26|Understanding design principles",
+                    "12|14-Jul-26|Working with logo design",
+                    "13|15-Jul-26|Working with logo design",
+                    "14|16-Jul-26|Working with marketplace",
+                    "15|18-Jul-26|Effects, masking & transparency",
+                    "16|19-Jul-26|Understanding design principles",
+                    "17|20-Jul-26|Packaging design in illustrator",
+                    "18|21-Jul-26|Business card design",
+                    "19|22-Jul-26|Flyer & brochure design",
+                    "20|23-Jul-26|Marketing Design",
+                    "21|25-Jul-26|Flyer & brochure design",
+                    "22|26-Jul-26|Print Design",
+                    "23|27-Jul-26|Branding Design (stationary)",
+                    "24|28-Jul-26|T-shirt design",
+                    "25|29-Jul-26|T-shirt design (class 2)",
+                    "26|30-Jul-26|Calender design",
+                    "27|1-Aug-26|Working with marketplace",
+                    "28|2-Aug-26|Portfolio",
+                    "29|3-Aug-26|Working with marketplace",
+                    "30|4-Aug-26|Working with marketplace",
+                    "31|6-Aug-26|AI Class 1",
+                    "32|8-Aug-26|AI Class 2",
+                    "33|9-Aug-26|Getting start with adobe photoshop",
+                    "34|10-Aug-26|Working with selection tools",
+                    "35|11-Aug-26|Working with layers",
+                    "36|12-Aug-26|Working with image, retouching image",
+                    "37|13-Aug-26|Colour Correction",
+                    "38|15-Aug-26|Layer Style",
+                    "39|16-Aug-26|Image restoration",
+                    "40|17-Aug-26|Photoshop Tools",
+                    "41|18-Aug-26|Photoshop Tools",
+                    "42|19-Aug-26|Background removing",
+                    "43|20-Aug-26|Background removing",
+                    "44|22-Aug-26|Photoshop Tools",
+                    "45|23-Aug-26|Magazine cover design",
+                    "46|24-Aug-26|Poster design",
+                    "47|25-Aug-26|Product manipulation (class 1)",
+                    "48|27-Aug-26|Advanced manipulation (class 1)",
+                    "49|29-Aug-26|Advanced manipulation (class 2)",
+                    "50|30-Aug-26|Social media post design",
+                    "51|31-Aug-26|Youtube Thumbnail Design",
+                    "52|1-Sep-26|Social media Cover design",
+                    "53|2-Sep-26|Out of marketplace",
+                    "54|3-Sep-26|Client communication pricing",
+                    "55|5-Sep-26|Portfolio building",
+                    "56|6-Sep-26|Mockup creation (class 1)",
+                    "57|7-Sep-26|Mockup creation (class 2)",
+                    "58|8-Sep-26|Problem solving (class 1)",
+                    "59|9-Sep-26|Problem solving (class 2)",
+                    "60|10-Sep-26|Final assessment and feedback",
+                    "61|12-Sep-26|Introduction to After Effects",
+                    "62|13-Sep-26|Fast Animation",
+                    "63|14-Sep-26|AE Preparation",
+                    "64|15-Sep-26|Photoshop to AE Workflow",
+                    "65|16-Sep-26|Animation Composer Plugin",
+                    "66|17-Sep-26|Logo Animation (Professional)",
+                    "67|19-Sep-26|Motion Ad Project 1",
+                    "68|20-Sep-26|Motion Ad Project 2",
+                    "69|21-Sep-26|Motion Ad Project 3",
+                    "70|22-Sep-26|Motion Ad Project 4",
+                    "71|23-Sep-26|Premiere Pro",
+                    "72|24-Sep-26|Color Correction & Color Grading",
+                    "73|26-Sep-26|Advertisement Editing",
+                    "74|27-Sep-26|Marketing Your Service",
+                    "75|28-Sep-26|Start Your Creative Agency"
+                ]
+            },
+            {
+                title: "Graphics Design (Night Shift)",
+                teachers: "Himel Mahbub & Md. Likhon",
+                time: "8 PM - 11 PM",
+                meetingId: "812 9436 0510",
+                passcode: "203001",
+                colorTheme: "purple",
+                data: [
+                    "1|1-Jul-26|Introduction & getting start with adobe illustrator cc",
+                    "2|2-Jul-26|Working with artboard, basic shape tools",
+                    "3|4-Jul-26|Working with pen tool, curvature tool",
+                    "4|5-Jul-26|Working with type tool & typography",
+                    "5|6-Jul-26|Working with type tool & typography",
+                    "6|7-Jul-26|Working with Chart & Design",
+                    "7|8-Jul-26|Rotate and reflect",
+                    "8|9-Jul-26|Working with blending mode & gradients",
+                    "9|11-Jul-26|Colour theory",
+                    "10|12-Jul-26|Working with pathfinder, align",
+                    "11|13-Jul-26|Understanding design principles",
+                    "12|14-Jul-26|Working with logo design",
+                    "13|15-Jul-26|Working with logo design",
+                    "14|16-Jul-26|Working with marketplace",
+                    "15|18-Jul-26|Effects, masking & transparency",
+                    "16|19-Jul-26|Understanding design principles",
+                    "17|20-Jul-26|Packaging design in illustrator",
+                    "18|21-Jul-26|Business card design",
+                    "19|22-Jul-26|Flyer & brochure design",
+                    "20|23-Jul-26|Marketing Design",
+                    "21|25-Jul-26|Flyer & brochure design",
+                    "22|26-Jul-26|Print Design",
+                    "23|27-Jul-26|Branding Design (stationary)",
+                    "24|28-Jul-26|T-shirt design",
+                    "25|29-Jul-26|T-shirt design (class 2)",
+                    "26|30-Jul-26|Calender design",
+                    "27|1-Aug-26|Working with marketplace",
+                    "28|2-Aug-26|Portfolio",
+                    "29|3-Aug-26|Working with marketplace",
+                    "30|4-Aug-26|Working with marketplace",
+                    "31|6-Aug-26|AI Class 1",
+                    "32|8-Aug-26|Al Class 2",
+                    "33|9-Aug-26|Getting start with adobe photoshop",
+                    "34|10-Aug-26|Working with selection tools",
+                    "35|11-Aug-26|Working with layers",
+                    "36|12-Aug-26|Working with image, retouching image",
+                    "37|13-Aug-26|Colour Correction",
+                    "38|15-Aug-26|Layer Style",
+                    "39|16-Aug-26|Image restoration",
+                    "40|17-Aug-26|Photoshop Tools",
+                    "41|18-Aug-26|Photoshop Tools",
+                    "42|19-Aug-26|Background removing",
+                    "43|20-Aug-26|Background removing",
+                    "44|22-Aug-26|Photoshop Tools",
+                    "45|23-Aug-26|Magazine cover design",
+                    "46|24-Aug-26|Poster design",
+                    "47|25-Aug-26|Product manipulation (class 1)",
+                    "48|27-Aug-26|Advanced manipulation (class 1)",
+                    "49|29-Aug-26|Advanced manipulation (class 2)",
+                    "50|30-Aug-26|Social media post design",
+                    "51|31-Aug-26|Youtube Thumbnail Design",
+                    "52|1-Sep-26|Social media Cover design",
+                    "53|2-Sep-26|Out of marketplace",
+                    "54|3-Sep-26|Client communication pricing",
+                    "55|5-Sep-26|Portfolio building",
+                    "56|6-Sep-26|Mockup creation (class 1)",
+                    "57|7-Sep-26|Mockup creation (class 2)",
+                    "58|8-Sep-26|Problem solving (class 1)",
+                    "59|9-Sep-26|Problem solving (class 2)",
+                    "60|10-Sep-26|Final assessment and feedback",
+                    "61|12-Sep-26|Introduction to After Effects",
+                    "62|13-Sep-26|Fast Animation",
+                    "63|14-Sep-26|AE Preparation",
+                    "64|15-Sep-26|Photoshop to AE Workflow",
+                    "65|16-Sep-26|Animation Composer Plugin",
+                    "66|17-Sep-26|Logo Animation (Professional)",
+                    "67|19-Sep-26|Motion Ad Project 1",
+                    "68|20-Sep-26|Motion Ad Project 2",
+                    "69|21-Sep-26|Motion Ad Project 3",
+                    "70|22-Sep-26|Motion Ad Project 4",
+                    "71|22-Sep-26|Premiere Pro",
+                    "72|23-Sep-26|Color Correction & Color Grading",
+                    "73|24-Sep-26|Advertisement Editing",
+                    "74|27-Sep-26|Marketing Your Service",
+                    "75|28-Sep-26|Start Your Creative Agency"
+                ]
+            }
+        ];
+
+        // Time Check Logic based on current device time
+        function getClassStatus(timeStr) {
+            const now = new Date();
+            
+            // To manually test the logic, you can uncomment the line below and set a custom time:
+            // const now = new Date('2026-07-13T21:14:00'); // simulating 9:14 PM
+
+            const [startPart, endPart] = timeStr.split('-').map(s => s.trim());
+            
+            function convertTo24Hour(timeModifier) {
+                let [time, modifier] = timeModifier.split(' ');
+                let [hours, minutes] = time.split(':');
+                if(!minutes) minutes = "00";
+                hours = parseInt(hours, 10);
+                if (hours === 12 && modifier.toUpperCase() === 'AM') hours = 0;
+                if (hours < 12 && modifier.toUpperCase() === 'PM') hours += 12;
+                return { h: hours, m: parseInt(minutes, 10) };
+            }
+
+            const sTime = convertTo24Hour(startPart);
+            const eTime = convertTo24Hour(endPart);
+
+            const startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), sTime.h, sTime.m, 0);
+            const endTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), eTime.h, eTime.m, 0);
+
+            if (now > endTime) return "ended";
+            if (now >= startTime && now <= endTime) return "running";
+            return "upcoming";
+        }
+
+        const fullScheduleContainer = document.getElementById('schedule-container');
+        const todaysClassesGrid = document.getElementById('todays-classes-grid');
+        const liveToastContainer = document.getElementById('live-toast-container');
+        const toggleBtn = document.getElementById('toggle-schedule-btn');
+
+        // Toggle Full Schedule
+        toggleBtn.addEventListener('click', () => {
+            if(fullScheduleContainer.classList.contains('hidden')){
+                fullScheduleContainer.classList.remove('hidden');
+                setTimeout(() => fullScheduleContainer.classList.remove('opacity-0'), 10);
+                toggleBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    শিডিউল বন্ধ করুন
+                `;
+                toggleBtn.classList.replace('from-green-600', 'from-red-500');
+                toggleBtn.classList.replace('to-green-500', 'to-red-400');
+                toggleBtn.classList.replace('hover:from-green-700', 'hover:from-red-600');
+                toggleBtn.classList.replace('hover:to-green-600', 'hover:to-red-500');
+            } else {
+                fullScheduleContainer.classList.add('opacity-0');
+                setTimeout(() => fullScheduleContainer.classList.add('hidden'), 500);
+                toggleBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    সম্পূর্ণ ক্লাস শিডিউল দেখুন
+                `;
+                toggleBtn.classList.replace('from-red-500', 'from-green-600');
+                toggleBtn.classList.replace('to-red-400', 'to-green-500');
+                toggleBtn.classList.replace('hover:from-red-600', 'hover:from-green-700');
+                toggleBtn.classList.replace('hover:to-red-500', 'hover:to-green-600');
+            }
+        });
+
+        // Loop over schedules to build UI
+        schedules.forEach(schedule => {
+            const zoomLink = `https://zoom.us/j/${schedule.meetingId.replace(/\s+/g, '')}`;
+            
+            // --- 1. FIND TODAY'S CLASS & RENDER IN GRID ---
+            const todayClass = schedule.data.find(item => item.includes(todayDateStr));
+            if (todayClass) {
+                const [, , topic] = todayClass.split('|');
+                const status = getClassStatus(schedule.time);
+                
+                let badgeHtml = '';
+                let btnHtml = '';
+
+                if (status === 'ended') {
+                    badgeHtml = `<div class="absolute top-0 right-0 bg-gray-200 text-gray-700 text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-sm border-b border-l border-gray-300">✅ আজকের ক্লাস শেষ</div>`;
+                    btnHtml = `<button disabled class="bg-gray-400 text-white font-bold py-3.5 px-4 rounded-xl shadow-sm text-center w-full block cursor-not-allowed">⛔ ক্লাস সম্পন্ন হয়েছে</button>`;
+                } else if (status === 'running') {
+                    badgeHtml = `<div class="absolute top-0 right-0 bg-red-100 text-red-600 text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-sm border-b border-l border-red-200 animate-pulse">🔴 বর্তমান ক্লাস চলমান আছে</div>`;
+                    btnHtml = `<a href="${zoomLink}" target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl text-center w-full block transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 text-lg animate-bounce">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg> Join Live Class Now
+                               </a>`;
+                    
+                    // Add Live Popup Toast for running class
+                    liveToastContainer.innerHTML += `
+                        <div class="toast-popup bg-white border-l-4 border-red-500 shadow-2xl rounded-lg p-4 w-72 flex items-start gap-3 mb-2">
+                            <div class="text-red-500 animate-pulse mt-1"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg></div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">${schedule.title}</h4>
+                                <p class="text-xs text-gray-600 mt-1">🔴 বর্তমান ক্লাস চলমান আছে, এখনই যুক্ত হোন!</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    badgeHtml = `<div class="absolute top-0 right-0 bg-blue-100 text-blue-700 text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-sm border-b border-l border-blue-200">⏳ পরবর্তী ক্লাস</div>`;
+                    btnHtml = `<a href="${zoomLink}" target="_blank" class="bg-${schedule.colorTheme}-600 hover:bg-${schedule.colorTheme}-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md hover:shadow-lg text-center w-full block transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 text-lg">🎥 Join Zoom</a>`;
+                }
+                
+                const todayCardHtml = `
+                    <div class="bg-white rounded-2xl p-6 border-l-[6px] border-${schedule.colorTheme}-500 flex flex-col justify-between h-full shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.15)] transition-all duration-300 relative overflow-hidden group ${status === 'ended' ? 'opacity-80' : ''}">
+                        ${badgeHtml}
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4 pr-16 leading-tight">${schedule.title}</h3>
+                            <div class="bg-${schedule.colorTheme}-50/60 rounded-xl p-4 mb-5 border border-${schedule.colorTheme}-100">
+                                <p class="text-${schedule.colorTheme}-600 font-semibold text-sm mb-1 uppercase tracking-wide">📚 Today's Topic:</p>
+                                <p class="text-lg font-bold text-gray-900 leading-snug">${topic}</p>
+                            </div>
+                            <div class="space-y-3 mb-6 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                <p class="text-[15px] text-gray-700 flex items-center gap-2">
+                                    <span class="text-lg">👨‍🏫</span> <span class="font-medium">Teacher:</span> ${schedule.teachers}
+                                </p>
+                                <p class="text-[15px] text-gray-700 flex items-center gap-2">
+                                    <span class="text-lg">⏰</span> <span class="font-medium">Time:</span> ${schedule.time}
+                                </p>
+                                <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3 pt-3 border-t border-gray-200">
+                                    <p class="text-sm text-gray-700 font-mono bg-white px-2 py-1 rounded shadow-sm border border-gray-100"><span class="font-bold text-blue-700">ID:</span> ${schedule.meetingId}</p>
+                                    <p class="text-sm text-gray-700 font-mono bg-white px-2 py-1 rounded shadow-sm border border-gray-100"><span class="font-bold text-red-600">Pass:</span> ${schedule.passcode}</p>
+                                </div>
+                            </div>
+                        </div>
+                        ${btnHtml}
+                    </div>
+                `;
+                todaysClassesGrid.innerHTML += todayCardHtml;
+            }
+
+            // --- 2. RENDER FULL SCHEDULE TABLE WITH ALL ROWS ---
+            let rowsHtml = '';
+            schedule.data.forEach(item => {
+                const [sl, date, topic] = item.split('|');
+                const isToday = date === todayDateStr ? `bg-yellow-50 font-bold border-l-4 border-yellow-400` : `hover:bg-gray-50 border-b border-gray-100 transition-colors`;
+                
+                rowsHtml += `
+                    <tr class="${isToday}">
+                        <td class="p-3 text-gray-700 text-center w-12">${sl}</td>
+                        <td class="p-3 text-gray-700 whitespace-nowrap w-28">${date}</td>
+                        <td class="p-3 text-gray-800">${topic}</td>
+                    </tr>
+                `;
+            });
+
+            const fullTableCardHtml = `
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 flex flex-col h-[650px] transition-all hover:shadow-xl">
+                    <div class="bg-${schedule.colorTheme}-600 text-white p-5 shrink-0 flex justify-between items-center">
+                        <div>
+                            <h2 class="text-2xl font-bold mb-1">${schedule.title}</h2>
+                            <p class="text-${schedule.colorTheme}-100 font-medium text-sm">Teacher: ${schedule.teachers}</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-${schedule.colorTheme}-50/50 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm shrink-0">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center gap-2 text-gray-700"><span class="text-lg">⏰</span> <span class="font-bold">Time:</span> ${schedule.time}</div>
+                            <div class="flex items-center gap-4">
+                                <div class="bg-white px-2 py-1 rounded border border-gray-200 font-mono shadow-sm"><span class="font-bold text-gray-500">ID:</span> ${schedule.meetingId}</div>
+                                <div class="bg-white px-2 py-1 rounded border border-gray-200 font-mono shadow-sm"><span class="font-bold text-gray-500">Pass:</span> ${schedule.passcode}</div>
+                            </div>
+                        </div>
+                        <a href="${zoomLink}" target="_blank" class="bg-${schedule.colorTheme}-600 hover:bg-${schedule.colorTheme}-700 text-white font-bold py-2.5 px-5 rounded-lg shadow transition transform hover:-translate-y-0.5 text-center whitespace-nowrap flex items-center justify-center gap-2">
+                            🎥 Join Zoom
+                        </a>
+                    </div>
+                    <div class="overflow-y-auto flex-grow relative scroll-smooth custom-scrollbar">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-gray-100/90 backdrop-blur sticky top-0 shadow-sm z-10">
+                                <tr>
+                                    <th class="p-3 font-semibold text-gray-600 text-center w-12">SL</th>
+                                    <th class="p-3 font-semibold text-gray-600 w-28">Date</th>
+                                    <th class="p-3 font-semibold text-gray-600">Topic</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${rowsHtml}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            fullScheduleContainer.innerHTML += fullTableCardHtml;
+        });
+    </script>
+</body>
+</html>
