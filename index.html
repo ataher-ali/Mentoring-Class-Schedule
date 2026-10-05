@@ -51,119 +51,122 @@
         }
     </script>
 </head>
-<body class="min-h-screen p-4 md:p-8 flex items-start md:items-center justify-center">
-    <div class="max-w-4xl w-full">
+<body class="min-h-screen p-4 md:p-8 flex flex-col items-center">
+    
+    <!-- Main Content Wrapper -->
+    <div class="max-w-4xl w-full flex-grow flex flex-col justify-center">
         
-        <!-- Official Banner / Header Section -->
-        <div class="text-center mb-10 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200">
-            <p class="text-indigo-600 font-bold text-sm md:text-base mb-1">যুব উন্নয়ন অধিদপ্তর, যুব ও ক্রীড়া মন্ত্রণালয়</p>
-            <h1 class="text-xl md:text-3xl font-extrabold text-slate-900 mb-3 leading-snug">
-                "দেশের ৬৪ জেলায় শিক্ষিত কর্মপ্রত্যাশী যুবদের ফ্রিল্যান্সিং প্রশিক্ষণের মাধ্যমে কর্মসংস্থান সৃষ্টি (১ম সংশোধিত)" শীর্ষক প্রকল্প
-            </h1>
-            <p class="text-slate-600 font-semibold mb-5">বাস্তবায়নেঃ ই-লার্নিং অ্যান্ড আর্নিং লিমিটেড</p>
+        <div class="w-full py-4">
+            <!-- Official Banner / Header Section -->
+            <div class="text-center mb-10 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <p class="text-indigo-600 font-bold text-sm md:text-base mb-1">যুব উন্নয়ন অধিদপ্তর, যুব ও ক্রীড়া মন্ত্রণালয়</p>
+                <h1 class="text-xl md:text-3xl font-extrabold text-slate-900 mb-3 leading-snug">
+                    "দেশের ৬৪ জেলায় শিক্ষিত কর্মপ্রত্যাশী যুবদের ফ্রিল্যান্সিং প্রশিক্ষণের মাধ্যমে কর্মসংস্থান সৃষ্টি (১ম সংশোধিত)" শীর্ষক প্রকল্প
+                </h1>
+                <p class="text-slate-600 font-semibold mb-5">বাস্তবায়নেঃ ই-লার্নিং অ্যান্ড আর্নিং লিমিটেড</p>
+                
+                <div class="inline-block py-2 px-5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-800 font-bold text-sm md:text-base">
+                    ৭ম ব্যাচ মেন্টরিং ক্লাস - সরাসরি জয়েন লিংক
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
+                <button id="btn-day-shift" onclick="switchTab('day-shift')" class="tab-btn tab-btn-active w-full sm:w-auto font-semibold py-3 px-8 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    ডে শিফট (Day Shift)
+                </button>
+                <button id="btn-night-shift" onclick="switchTab('night-shift')" class="tab-btn tab-btn-inactive w-full sm:w-auto font-semibold py-3 px-8 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    নাইট শিফট (Night Shift)
+                </button>
+            </div>
+
+            <!-- Day Shift Content -->
+            <div id="day-shift" class="tab-content transition-all duration-500">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Digital Marketing (Day) -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 hover:shadow-lg transition duration-300 flex flex-col justify-between h-full bg-gradient-to-br from-indigo-50 to-white">
+                        <div>
+                            <div class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4 inline-block">Day Shift</div>
+                            <h2 class="text-xl font-bold text-slate-800 leading-tight mb-2">Digital Marketing<br><span class="text-lg text-indigo-600 font-semibold">With Video Editing</span></h2>
+                            <div class="space-y-2 mt-4 mb-6">
+                                <p class="text-slate-600 text-sm"><strong>ট্রেইনার:</strong> Anoy Chandra Pal</p>
+                                <p class="text-slate-600 text-sm"><strong>সময়:</strong> 9:30AM-12PM</p>
+                            </div>
+                        </div>
+                        <a href="https://zoom.us/j/83366546600?pwd=202602" target="_blank" class="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-4 rounded-xl transition duration-300 shadow-md hover:shadow-lg">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 13.62c0-1.87 1.52-3.39 3.39-3.39.46 0 .91.1 1.32.27v-3.1c0-1.74-1.41-3.15-3.15-3.15H5.4A3.15 3.15 0 0 0 2.25 7.4v9.2c0 1.74 1.41 3.15 3.15 3.15h13.2c1.74 0 3.15-1.41 3.15-3.15v-3.1a3.36 3.36 0 0 1-1.32.26c-1.86 0-3.38-1.51-3.38-3.38z"></path><path d="M22.75 14.86v-2.48c0-.62-.51-1.13-1.13-1.13a2.26 2.26 0 0 0-2.26 2.26c0 1.25 1.01 2.26 2.26 2.26.62 0 1.13-.51 1.13-1.13z"></path></svg>
+                            Join Class directly
+                        </a>
+                    </div>
+
+                    <!-- Graphics Design (Day) -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 hover:shadow-lg transition duration-300 flex flex-col justify-between h-full bg-gradient-to-br from-emerald-50 to-white">
+                        <div>
+                            <div class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4 inline-block">Day Shift</div>
+                            <h2 class="text-xl font-bold text-slate-800 leading-tight mb-2">Graphics Design<br><span class="text-lg text-emerald-600 font-semibold">With Video Editing</span></h2>
+                            <div class="space-y-2 mt-4 mb-6">
+                                <p class="text-slate-600 text-sm"><strong>ট্রেইনার:</strong> Nishith Kumar Roy</p>
+                                <p class="text-slate-600 text-sm"><strong>সময়:</strong> 9:30AM-12PM</p>
+                            </div>
+                        </div>
+                        <a href="https://zoom.us/j/87528881307?pwd=203002" target="_blank" class="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 px-4 rounded-xl transition duration-300 shadow-md hover:shadow-lg">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 13.62c0-1.87 1.52-3.39 3.39-3.39.46 0 .91.1 1.32.27v-3.1c0-1.74-1.41-3.15-3.15-3.15H5.4A3.15 3.15 0 0 0 2.25 7.4v9.2c0 1.74 1.41 3.15 3.15 3.15h13.2c1.74 0 3.15-1.41 3.15-3.15v-3.1a3.36 3.36 0 0 1-1.32.26c-1.86 0-3.38-1.51-3.38-3.38z"></path><path d="M22.75 14.86v-2.48c0-.62-.51-1.13-1.13-1.13a2.26 2.26 0 0 0-2.26 2.26c0 1.25 1.01 2.26 2.26 2.26.62 0 1.13-.51 1.13-1.13z"></path></svg>
+                            Join Class directly
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Night Shift Content -->
+            <div id="night-shift" class="tab-content hidden transition-all duration-500">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Digital Marketing (Night) -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 hover:shadow-lg transition duration-300 flex flex-col justify-between h-full bg-gradient-to-br from-indigo-50 to-white">
+                        <div>
+                            <div class="bg-slate-800 text-slate-100 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4 inline-block">Night Shift</div>
+                            <h2 class="text-xl font-bold text-slate-800 leading-tight mb-2">Digital Marketing<br><span class="text-lg text-indigo-600 font-semibold">With Video Editing</span></h2>
+                            <div class="space-y-2 mt-4 mb-6">
+                                <p class="text-slate-600 text-sm"><strong>ট্রেইনার:</strong> Md Labib Islam</p>
+                                <p class="text-slate-600 text-sm"><strong>সময়:</strong> 8 PM-11PM</p>
+                            </div>
+                        </div>
+                        <a href="https://zoom.us/j/81264786860?pwd=202601" target="_blank" class="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-4 rounded-xl transition duration-300 shadow-md hover:shadow-lg">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 13.62c0-1.87 1.52-3.39 3.39-3.39.46 0 .91.1 1.32.27v-3.1c0-1.74-1.41-3.15-3.15-3.15H5.4A3.15 3.15 0 0 0 2.25 7.4v9.2c0 1.74 1.41 3.15 3.15 3.15h13.2c1.74 0 3.15-1.41 3.15-3.15v-3.1a3.36 3.36 0 0 1-1.32.26c-1.86 0-3.38-1.51-3.38-3.38z"></path><path d="M22.75 14.86v-2.48c0-.62-.51-1.13-1.13-1.13a2.26 2.26 0 0 0-2.26 2.26c0 1.25 1.01 2.26 2.26 2.26.62 0 1.13-.51 1.13-1.13z"></path></svg>
+                            Join Class directly
+                        </a>
+                    </div>
+
+                    <!-- Graphics Design (Night) -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 hover:shadow-lg transition duration-300 flex flex-col justify-between h-full bg-gradient-to-br from-emerald-50 to-white">
+                        <div>
+                            <div class="bg-slate-800 text-slate-100 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4 inline-block">Night Shift</div>
+                            <h2 class="text-xl font-bold text-slate-800 leading-tight mb-2">Graphics Design<br><span class="text-lg text-emerald-600 font-semibold">With Video Editing</span></h2>
+                            <div class="space-y-2 mt-4 mb-6">
+                                <p class="text-slate-600 text-sm"><strong>ট্রেইনার:</strong> HiMEL mahbub</p>
+                                <p class="text-slate-600 text-sm"><strong>সময়:</strong> 8:30PM-11PM</p>
+                            </div>
+                        </div>
+                        <a href="https://zoom.us/j/81294360510?pwd=203001" target="_blank" class="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 px-4 rounded-xl transition duration-300 shadow-md hover:shadow-lg">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 13.62c0-1.87 1.52-3.39 3.39-3.39.46 0 .91.1 1.32.27v-3.1c0-1.74-1.41-3.15-3.15-3.15H5.4A3.15 3.15 0 0 0 2.25 7.4v9.2c0 1.74 1.41 3.15 3.15 3.15h13.2c1.74 0 3.15-1.41 3.15-3.15v-3.1a3.36 3.36 0 0 1-1.32.26c-1.86 0-3.38-1.51-3.38-3.38z"></path><path d="M22.75 14.86v-2.48c0-.62-.51-1.13-1.13-1.13a2.26 2.26 0 0 0-2.26 2.26c0 1.25 1.01 2.26 2.26 2.26.62 0 1.13-.51 1.13-1.13z"></path></svg>
+                            Join Class directly
+                        </a>
+                    </div>
+
+                </div>
+            </div>
             
-            <div class="inline-block py-2 px-5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-800 font-bold text-sm md:text-base">
-                ৭ম ব্যাচ মেন্টরিং ক্লাস - সরাসরি জয়েন লিংক
-            </div>
         </div>
+    </div>
 
-        <!-- Tab Navigation -->
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
-            <button id="btn-day-shift" onclick="switchTab('day-shift')" class="tab-btn tab-btn-active w-full sm:w-auto font-semibold py-3 px-8 rounded-xl transition duration-300 flex items-center justify-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                ডে শিফট (Day Shift)
-            </button>
-            <button id="btn-night-shift" onclick="switchTab('night-shift')" class="tab-btn tab-btn-inactive w-full sm:w-auto font-semibold py-3 px-8 rounded-xl transition duration-300 flex items-center justify-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                নাইট শিফট (Night Shift)
-            </button>
-        </div>
-
-        <!-- Day Shift Content -->
-        <div id="day-shift" class="tab-content transition-all duration-500">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                <!-- Digital Marketing (Day) -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 hover:shadow-lg transition duration-300 flex flex-col justify-between h-full bg-gradient-to-br from-indigo-50 to-white">
-                    <div>
-                        <div class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4 inline-block">Day Shift</div>
-                        <h2 class="text-xl font-bold text-slate-800 leading-tight mb-2">Digital Marketing<br><span class="text-lg text-indigo-600 font-semibold">With Video Editing</span></h2>
-                        <div class="space-y-2 mt-4 mb-6">
-                            <p class="text-slate-600 text-sm"><strong>ট্রেইনার:</strong> Anoy Chandra Pal</p>
-                            <p class="text-slate-600 text-sm"><strong>সময়:</strong> 9:30AM-12PM</p>
-                        </div>
-                    </div>
-                    <!-- Zoom link with embedded password -->
-                    <a href="https://zoom.us/j/83366546600?pwd=202602" target="_blank" class="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-4 rounded-xl transition duration-300 shadow-md hover:shadow-lg">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 13.62c0-1.87 1.52-3.39 3.39-3.39.46 0 .91.1 1.32.27v-3.1c0-1.74-1.41-3.15-3.15-3.15H5.4A3.15 3.15 0 0 0 2.25 7.4v9.2c0 1.74 1.41 3.15 3.15 3.15h13.2c1.74 0 3.15-1.41 3.15-3.15v-3.1a3.36 3.36 0 0 1-1.32.26c-1.86 0-3.38-1.51-3.38-3.38z"></path><path d="M22.75 14.86v-2.48c0-.62-.51-1.13-1.13-1.13a2.26 2.26 0 0 0-2.26 2.26c0 1.25 1.01 2.26 2.26 2.26.62 0 1.13-.51 1.13-1.13z"></path></svg>
-                        Join Class directly
-                    </a>
-                </div>
-
-                <!-- Graphics Design (Day) -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 hover:shadow-lg transition duration-300 flex flex-col justify-between h-full bg-gradient-to-br from-emerald-50 to-white">
-                    <div>
-                        <div class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4 inline-block">Day Shift</div>
-                        <h2 class="text-xl font-bold text-slate-800 leading-tight mb-2">Graphics Design<br><span class="text-lg text-emerald-600 font-semibold">With Video Editing</span></h2>
-                        <div class="space-y-2 mt-4 mb-6">
-                            <p class="text-slate-600 text-sm"><strong>ট্রেইনার:</strong> Nishith Kumar Roy</p>
-                            <p class="text-slate-600 text-sm"><strong>সময়:</strong> 9:30AM-12PM</p>
-                        </div>
-                    </div>
-                    <!-- Zoom link with embedded password -->
-                    <a href="https://zoom.us/j/87528881307?pwd=203002" target="_blank" class="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 px-4 rounded-xl transition duration-300 shadow-md hover:shadow-lg">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 13.62c0-1.87 1.52-3.39 3.39-3.39.46 0 .91.1 1.32.27v-3.1c0-1.74-1.41-3.15-3.15-3.15H5.4A3.15 3.15 0 0 0 2.25 7.4v9.2c0 1.74 1.41 3.15 3.15 3.15h13.2c1.74 0 3.15-1.41 3.15-3.15v-3.1a3.36 3.36 0 0 1-1.32.26c-1.86 0-3.38-1.51-3.38-3.38z"></path><path d="M22.75 14.86v-2.48c0-.62-.51-1.13-1.13-1.13a2.26 2.26 0 0 0-2.26 2.26c0 1.25 1.01 2.26 2.26 2.26.62 0 1.13-.51 1.13-1.13z"></path></svg>
-                        Join Class directly
-                    </a>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Night Shift Content -->
-        <div id="night-shift" class="tab-content hidden transition-all duration-500">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                <!-- Digital Marketing (Night) -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 hover:shadow-lg transition duration-300 flex flex-col justify-between h-full bg-gradient-to-br from-indigo-50 to-white">
-                    <div>
-                        <div class="bg-slate-800 text-slate-100 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4 inline-block">Night Shift</div>
-                        <h2 class="text-xl font-bold text-slate-800 leading-tight mb-2">Digital Marketing<br><span class="text-lg text-indigo-600 font-semibold">With Video Editing</span></h2>
-                        <div class="space-y-2 mt-4 mb-6">
-                            <p class="text-slate-600 text-sm"><strong>ট্রেইনার:</strong> Md Labib Islam</p>
-                            <p class="text-slate-600 text-sm"><strong>সময়:</strong> 8 PM-11PM</p>
-                        </div>
-                    </div>
-                    <!-- Zoom link with embedded password -->
-                    <a href="https://zoom.us/j/81264786860?pwd=202601" target="_blank" class="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-4 rounded-xl transition duration-300 shadow-md hover:shadow-lg">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 13.62c0-1.87 1.52-3.39 3.39-3.39.46 0 .91.1 1.32.27v-3.1c0-1.74-1.41-3.15-3.15-3.15H5.4A3.15 3.15 0 0 0 2.25 7.4v9.2c0 1.74 1.41 3.15 3.15 3.15h13.2c1.74 0 3.15-1.41 3.15-3.15v-3.1a3.36 3.36 0 0 1-1.32.26c-1.86 0-3.38-1.51-3.38-3.38z"></path><path d="M22.75 14.86v-2.48c0-.62-.51-1.13-1.13-1.13a2.26 2.26 0 0 0-2.26 2.26c0 1.25 1.01 2.26 2.26 2.26.62 0 1.13-.51 1.13-1.13z"></path></svg>
-                        Join Class directly
-                    </a>
-                </div>
-
-                <!-- Graphics Design (Night) -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 hover:shadow-lg transition duration-300 flex flex-col justify-between h-full bg-gradient-to-br from-emerald-50 to-white">
-                    <div>
-                        <div class="bg-slate-800 text-slate-100 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4 inline-block">Night Shift</div>
-                        <h2 class="text-xl font-bold text-slate-800 leading-tight mb-2">Graphics Design<br><span class="text-lg text-emerald-600 font-semibold">With Video Editing</span></h2>
-                        <div class="space-y-2 mt-4 mb-6">
-                            <p class="text-slate-600 text-sm"><strong>ট্রেইনার:</strong> HiMEL mahbub</p>
-                            <p class="text-slate-600 text-sm"><strong>সময়:</strong> 8:30PM-11PM</p>
-                        </div>
-                    </div>
-                    <!-- Zoom link with embedded password -->
-                    <a href="https://zoom.us/j/81294360510?pwd=203001" target="_blank" class="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 px-4 rounded-xl transition duration-300 shadow-md hover:shadow-lg">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 13.62c0-1.87 1.52-3.39 3.39-3.39.46 0 .91.1 1.32.27v-3.1c0-1.74-1.41-3.15-3.15-3.15H5.4A3.15 3.15 0 0 0 2.25 7.4v9.2c0 1.74 1.41 3.15 3.15 3.15h13.2c1.74 0 3.15-1.41 3.15-3.15v-3.1a3.36 3.36 0 0 1-1.32.26c-1.86 0-3.38-1.51-3.38-3.38z"></path><path d="M22.75 14.86v-2.48c0-.62-.51-1.13-1.13-1.13a2.26 2.26 0 0 0-2.26 2.26c0 1.25 1.01 2.26 2.26 2.26.62 0 1.13-.51 1.13-1.13z"></path></svg>
-                        Join Class directly
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div> </body>
     <!-- ============ FOOTER ============ -->
-<div class=" text-center py-6 mt-auto text-sm text-gray-500">
-    Developed by <a href="https://ataher.vercel.app/" target="_blank" class="text-blue-600 hover:underline font-semibold">Ataher Ali</a>
-</div>
+    <div class="print:hidden w-full text-center py-6 mt-auto text-sm text-gray-500">
+        Developed by <a href="https://ataher.vercel.app/" target="_blank" class="text-blue-600 hover:underline font-semibold">Ataher Ali</a>
+    </div>
 
+</body>
 </html>
